@@ -13,5 +13,5 @@ $totalIterations = rand(100, 200);
 
 for ($currentIteration = 0; $currentIteration < $totalIterations; $currentIteration += 1) {
     ProgressBar::show($currentIteration, $totalIterations);
-    usleep(100000);
+    usleep(rand(100000, 200000));
 }

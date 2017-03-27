@@ -37,17 +37,18 @@ class ProgressBar
         $progress = str_pad('', $p2, '=') . str_pad('', 50 - $p2);
         $usage = round(memory_get_usage() / 1024, 1);
         /// Show progressbar:
-        echo "Progress: [" . $progress . "] " . number_format($p, 2) . "% - ";
+        echo "Progress: \033[33m[" . $progress . "]\033[0m \033[1;36m" . number_format($p, 2) . "%\033[0m - ";
         // Show count:
         if ($current !== null && $total !== null) {
-            echo "[" . $current . "/" . $total . "] - ";
+            echo "\033[36m[" . $current . "/" . $total . "]\033[0m - ";
         }
         // Show ETA:
         $elapsedSeconds = time() - self::$startTime;
         $etaSeconds = (1 - $percent) * ($elapsedSeconds / $percent);
-        echo "ETA: " . @date('H:i:s', $etaSeconds) . " - ";
+        echo "\033[36mETA: " . @date('H:i:s', $etaSeconds) . "\033[0m - ";
+        
         // Show memory usage:
-        echo "MEM: " . $usage . "k  \r";
+        echo "\033[34mMEM: " . $usage . "k\033[0m  \r";
         if ($percent == 1) {
             unset(self::$startTime);
             echo "\n";
