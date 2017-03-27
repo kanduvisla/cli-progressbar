@@ -1,6 +1,6 @@
 <?php
 /**
- * User: Giel Berkers <giel@happy-online.nl>
+ * User: Giel Berkers <info@gielberkers.com>
  * Date: 27/03/2017
  * Time: 10:18
  */
@@ -23,7 +23,7 @@ class ProgressBar
      * @param $current
      * @param $total
      */
-    public static function echoProgress($current, $total)
+    public static function show($current, $total)
     {
         $percent = $current / $total;
         $p = $percent * 100;
@@ -45,7 +45,7 @@ class ProgressBar
         // Show ETA:
         $elapsedSeconds = time() - self::$startTime;
         $etaSeconds = (1 - $percent) * ($elapsedSeconds / $percent);
-        echo "ETA: " . date('H:i:s', $etaSeconds) . " - ";
+        echo "ETA: " . @date('H:i:s', $etaSeconds) . " - ";
         // Show memory usage:
         echo "MEM: " . $usage . "k  \r";
         if ($percent == 1) {
